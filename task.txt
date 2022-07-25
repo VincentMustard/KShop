@@ -1,0 +1,16 @@
+完成一个程序KShop，
+
+consumer模块负责：
+1. 从redis中获取交易对（如：BTC/USDT）;
+2. 定时生成 1min，5min 的 k 线，然后存入mysql并发布到redis中
+3. 最新一根 k 线每 0.5 秒发布到redis中
+
+apiServer模块负责：
+1. 使用 gin 框架提供 api 接口，从mysql中读取k线
+
+要求：
+1. 交易对列表从 mysql 中获取
+2. 最新一根 k 线每 0.5 秒使用 redis 的 publish 发布出去
+
+交易推送的频率设想在 10 笔每秒，数据库表结构自行设计，交易推送自己写个
+测试程序发送，成交价格可以随机。api 结构自行设计

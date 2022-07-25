@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:7.0
+    ports:
+      - "6379:6379"
+    volumes:
+      - "/data"
+    networks:
+      - trade-network
+  db:
+    image: mysql:5.7
+    restart: always
+    networks:
+      - trade-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=trade
+
+networks:
+  trade-network:
